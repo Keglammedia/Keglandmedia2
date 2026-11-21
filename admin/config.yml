@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Keglammedia/Keglammedia
+  repo: Keglammedia/Keglandmedia2
   branch: main
 
 media_folder: images
