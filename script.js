@@ -1,5 +1,6 @@
 const BATCH = 4;
 let shown = 0;
+let POSTS = [];
 
 const feed = document.getElementById("feed");
 const sentinel = document.getElementById("sentinel");
@@ -13,15 +14,15 @@ function makeCard(p) {
   top.className = "card-top";
   const cat = document.createElement("span");
   cat.className = "cat";
-  cat.textContent = p.category;
+  cat.textContent = p.category || "";
   const date = document.createElement("span");
   date.className = "date";
-  date.textContent = p.date;
+  date.textContent = p.date || "";
   top.append(cat, date);
 
   const img = document.createElement("img");
   img.src = p.image;
-  img.alt = p.title;
+  img.alt = p.title || "";
   img.loading = "lazy";
 
   const actions = document.createElement("div");
@@ -39,9 +40,9 @@ function makeCard(p) {
   const body = document.createElement("div");
   body.className = "body";
   const h2 = document.createElement("h2");
-  h2.textContent = p.title;
+  h2.textContent = p.title || "";
   const desc = document.createElement("p");
-  desc.textContent = p.description;
+  desc.textContent = p.description || "";
   body.append(h2, desc);
   if (p.link) {
     const a = document.createElement("a");
@@ -69,5 +70,11 @@ const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) loadMore();
 }, { rootMargin: "600px" });
 
-loadMore();
-observer.observe(sentinel);
+fetch("posts.json", { cache: "no-store" })
+  .then(r => r.json())
+  .then(data => {
+    POSTS = data.posts || [];
+    loadMore();
+    observer.observe(sentinel);
+  });
+  

@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "category": "Top Story",
+      "date": "Nov 21, 2026",
+      "title": "Your first headline goes here",
+      "description": "Write two or three sentences about the story here.",
+      "image": "https://picsum.photos/seed/news1/800/1000",
+      "link": ""
+    },
+    {
+      "category": "Sports",
+      "date": "Nov 21, 2026",
+      "title": "A second story",
+      "description": "This text appears right under the picture.",
+      "image": "https://picsum.photos/seed/news2/800/1000",
+      "link": ""
+    }
+  ]
+}

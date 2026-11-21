@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: Keglammedia/Keglammedia
+  branch: main
+
+media_folder: images
+public_folder: /images
+
+collections:
+  - name: feed
+    label: News Feed
+    files:
+      - name: posts
+        label: Stories
+        file: posts.json
+        fields:
+          - label: Stories
+            name: posts
+            widget: list
+            add_to_top: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Category, name: category, widget: string, hint: "Example: Sports" }
+              - { label: Date, name: date, widget: string, hint: "Example: Nov 22, 2026" }
+              - { label: Headline, name: title, widget: string }
+              - { label: Caption, name: description, widget: text }
+              - { label: Photo, name: image, widget: image }
+              - { label: Link (optional), name: link, widget: string, required: false }
