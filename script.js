@@ -1,35 +1,35 @@
 const BATCH = 4;
+const AD_EVERY = 2;
 let shown = 0;
+let count = 0;
+let adIndex = 0;
 let POSTS = [];
+let ADS = [];
 
 const feed = document.getElementById("feed");
 const sentinel = document.getElementById("sentinel");
 const endMsg = document.getElementById("end");
 
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text) e.textContent = text;
+  return e;
+}
+
 function makeCard(p) {
-  const card = document.createElement("article");
-  card.className = "card";
+  const card = el("article", "card");
 
-  const top = document.createElement("div");
-  top.className = "card-top";
-  const cat = document.createElement("span");
-  cat.className = "cat";
-  cat.textContent = p.category || "";
-  const date = document.createElement("span");
-  date.className = "date";
-  date.textContent = p.date || "";
-  top.append(cat, date);
+  const top = el("div", "card-top");
+  top.append(el("span", "cat", p.category || ""), el("span", "date", p.date || ""));
 
-  const img = document.createElement("img");
+  const img = el("img");
   img.src = p.image;
   img.alt = p.title || "";
   img.loading = "lazy";
 
-  const actions = document.createElement("div");
-  actions.className = "actions";
-  const like = document.createElement("button");
-  like.className = "like";
-  like.textContent = "\u2661";
+  const actions = el("div", "actions");
+  const like = el("button", "like", "\u2661");
   like.setAttribute("aria-label", "Like");
   like.addEventListener("click", () => {
     const on = like.classList.toggle("on");
@@ -37,26 +37,64 @@ function makeCard(p) {
   });
   actions.append(like);
 
-  const body = document.createElement("div");
-  body.className = "body";
-  const h2 = document.createElement("h2");
-  h2.textContent = p.title || "";
-  const desc = document.createElement("p");
-  desc.textContent = p.description || "";
-  body.append(h2, desc);
-  if (p.credit) {
-    const credit = document.createElement("p");
-    credit.className = "credit";
-    credit.textContent = "Photo credit: " + p.credit;
-    body.append(credit);
-  }
+  const body = el("div", "body");
+  body.append(el("h2", "", p.title || ""), el("p", "", p.description || ""));
+  if (p.credit) body.append(el("p", "credit", "Photo credit: " + p.credit));
 
   card.append(top, img, actions, body);
   return card;
 }
 
+function makeAd(a, extraClass) {
+  const box = el("div", "ad" + (extraClass ? " " + extraClass : ""));
+  box.append(el("div", "tag", "Advertisement"));
+  let inner;
+  if (a.link) {
+    inner = el("a", "ad-link");
+    inner.href = a.link;
+    inner.target = "_blank";
+    inner.rel = "noopener sponsored";
+  } else {
+    inner = el("div");
+  }
+  if (a.image) {
+    const img = el("img");
+    img.src = a.image;
+    img.alt = a.title || "Advertisement";
+    img.loading = "lazy";
+    inner.append(img);
+  }
+  if (a.title) inner.append(el("h3", "", a.title));
+  if (a.text) inner.append(el("p", "", a.text));
+  box.append(inner);
+  return box;
+}
+
+function renderLeft(s) {
+  const holder = document.getElementById("leftBox");
+  if (!s.left_title && !s.left_summary && !s.left_contact) {
+    holder.hidden = true;
+    return;
+  }
+  const box = el("div", "box");
+  if (s.left_title) box.append(el("h3", "", s.left_title));
+  if (s.left_summary) box.append(el("p", "pre", s.left_summary));
+  if (s.left_contact) {
+    box.append(el("h4", "", "Contact"));
+    box.append(el("p", "pre", s.left_contact));
+  }
+  holder.append(box);
+}
+
 function loadMore() {
-  POSTS.slice(shown, shown + BATCH).forEach(p => feed.append(makeCard(p)));
+  POSTS.slice(shown, shown + BATCH).forEach(p => {
+    feed.append(makeCard(p));
+    count++;
+    if (ADS.length && count % AD_EVERY === 0) {
+      feed.append(makeAd(ADS[adIndex % ADS.length], "feed-ad"));
+      adIndex++;
+    }
+  });
   shown += BATCH;
   if (shown >= POSTS.length) {
     observer.disconnect();
@@ -68,10 +106,17 @@ const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) loadMore();
 }, { rootMargin: "600px" });
 
-fetch("posts.json", { cache: "no-store" })
-  .then(r => r.json())
-  .then(data => {
+Promise.all([
+  fetch("posts.json", { cache: "no-store" }).then(r => r.json()),
+  fetch("sidebar.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({}))
+])
+  .then(([data, side]) => {
     POSTS = data.posts || [];
+    ADS = side.ads || [];
+    renderLeft(side);
+    const col = document.getElementById("adsCol");
+    ADS.forEach(a => col.append(makeAd(a)));
+    if (!ADS.length) col.hidden = true;
     loadMore();
     observer.observe(sentinel);
   })
