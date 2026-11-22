@@ -1,13 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>Content Manager</title>
-  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+  <title>Keglam Media</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+  <header class="top">
+    <h1>Keglam Media</h1>
+    <a class="contact" href="mailto:dpwatz@keglammedia.com">dpwatz@keglammedia.com</a>
+  </header>
+
+  <div class="layout">
+    <aside id="leftBox" class="side left"></aside>
+    <main id="feed"></main>
+    <aside id="adsCol" class="side right"></aside>
+  </div>
+  <div id="sentinel"></div>
+  <p id="end" hidden>You're all caught up.</p>
+
+  <script src="script.js"></script>
 </body>
 </html>
