@@ -25,4 +25,4 @@ collections:
               - { label: Headline, name: title, widget: string }
               - { label: Caption, name: description, widget: text }
               - { label: Photo, name: image, widget: image }
-              - { label: Link (optional), name: link, widget: string, required: false }
+              - { label: Photo Credit, name: credit, widget: string, required: false }

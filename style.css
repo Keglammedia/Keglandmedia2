@@ -87,3 +87,4 @@ body {
   font-size: .9rem;
 }
 #end { text-align: center; color: var(--muted); padding: 1rem 0 3rem; }
+.body .credit { margin: 0 0 .6rem; color: var(--muted); font-size: .8rem; font-style: italic; }

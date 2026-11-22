@@ -44,13 +44,12 @@ function makeCard(p) {
   const desc = document.createElement("p");
   desc.textContent = p.description || "";
   body.append(h2, desc);
-  if (p.link) {
-    const a = document.createElement("a");
-    a.href = p.link;
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.textContent = "Read more";
-    body.append(a);
+   if (p.credit) {
+    const credit = document.createElement("p");
+    credit.className = "credit";
+    credit.textContent = "Photo credit: " + p.credit;
+    body.append(credit);
+  }
   }
 
   card.append(top, img, actions, body);
