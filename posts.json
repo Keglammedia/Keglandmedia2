@@ -1,11 +1,11 @@
 {
   "posts": [
     {
-      "category": "Top Story",
+      "category": "Downtown Phoenix",
       "date": "Nov 21, 2026",
-      "title": "Your first headline goes here",
-      "description": "Write two or three sentences about the story here.",
-      "image": "https://picsum.photos/seed/news1/800/1000",
+      "title": "Phoenix Suns",
+      "description": "Picture of the arena for the Phoenix Suns.",
+      "image": "/images/IMG_5534.jpeg",
       "link": ""
     },
     {
