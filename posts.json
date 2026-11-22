@@ -2,18 +2,19 @@
   "posts": [
     {
       "category": "Sports",
-      "date": "Nov 21, 2026",
+      "date": "November 18, 2026",
+      "title": "Mortgage Match Up Center",
+      "description": "Phoenix, Arizona",
+      "image": "/images/IMG_5524.jpeg",
+      "credit": "Keglam Media"
+    },
+    {
+      "category": "Sports",
+      "date": "November 18, 2026",
       "title": "Phoenix Suns",
       "description": "Picture of the arena for the Phoenix Suns.",
       "image": "/images/IMG_5534.jpeg",
-      "link": ""
-    },
-    {
-      "category": "Travel",
-      "date": "Nov 21, 2026",
-      "title": "Sante Fe",
-      "description": "Sante Fe, NM",
-      "image": "/images/IMG_4264.jpeg",
+      "credit": "Keglam Media",
       "link": ""
     }
   ]
