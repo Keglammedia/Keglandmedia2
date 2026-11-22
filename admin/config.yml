@@ -26,3 +26,20 @@ collections:
               - { label: Caption, name: description, widget: text }
               - { label: Photo, name: image, widget: image }
               - { label: Photo Credit, name: credit, widget: string, required: false }
+      - name: sidebars
+        label: Sidebars and Ads
+        file: sidebar.json
+        fields:
+          - { label: Left box title, name: left_title, widget: string, required: false }
+          - { label: Company summary, name: left_summary, widget: text, required: false }
+          - { label: Contact details, name: left_contact, widget: text, required: false, hint: "One item per line: email, phone, address" }
+          - label: Ads
+            name: ads
+            widget: list
+            add_to_top: true
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Ad title (optional), name: title, widget: string, required: false }
+              - { label: Ad text (optional), name: text, widget: text, required: false }
+              - { label: Ad picture (optional), name: image, widget: image, required: false }
+              - { label: Link when clicked (optional), name: link, widget: string, required: false }
