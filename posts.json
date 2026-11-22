@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "category": "Downtown Phoenix",
+      "category": "Sports",
       "date": "Nov 21, 2026",
       "title": "Phoenix Suns",
       "description": "Picture of the arena for the Phoenix Suns.",
@@ -9,11 +9,11 @@
       "link": ""
     },
     {
-      "category": "Sports",
+      "category": "Travel",
       "date": "Nov 21, 2026",
-      "title": "A second story",
-      "description": "This text appears right under the picture.",
-      "image": "https://picsum.photos/seed/news2/800/1000",
+      "title": "Sante Fe",
+      "description": "Sante Fe, NM",
+      "image": "/images/IMG_4264.jpeg",
       "link": ""
     }
   ]
