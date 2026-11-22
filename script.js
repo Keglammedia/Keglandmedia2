@@ -24,7 +24,7 @@ function makeCard(p) {
   top.append(el("span", "cat", p.category || ""), el("span", "date", p.date || ""));
 
   const img = el("img");
-  img.src = p.image;
+  img.src = p.image || "";
   img.alt = p.title || "";
   img.loading = "lazy";
 
@@ -72,6 +72,7 @@ function makeAd(a, extraClass) {
 
 function renderLeft(s) {
   const holder = document.getElementById("leftBox");
+  if (!holder) return;
   if (!s.left_title && !s.left_summary && !s.left_contact) {
     holder.hidden = true;
     return;
@@ -106,21 +107,35 @@ const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) loadMore();
 }, { rootMargin: "600px" });
 
-Promise.all([
-  fetch("posts.json", { cache: "no-store" }).then(r => r.json()),
-  fetch("sidebar.json", { cache: "no-store" }).then(r => r.json()).catch(() => ({}))
-])
+function getJson(url, required) {
+  return fetch(url, { cache: "no-store" })
+    .then(r => {
+      if (!r.ok) {
+        if (required) throw new Error(url + " not found");
+        return {};
+      }
+      return r.json();
+    })
+    .catch(err => {
+      if (required) throw new Error(url + ": " + err.message);
+      return {};
+    });
+}
+
+Promise.all([getJson("posts.json", true), getJson("sidebar.json", false)])
   .then(([data, side]) => {
     POSTS = data.posts || [];
     ADS = side.ads || [];
     renderLeft(side);
     const col = document.getElementById("adsCol");
-    ADS.forEach(a => col.append(makeAd(a)));
-    if (!ADS.length) col.hidden = true;
+    if (col) {
+      ADS.forEach(a => col.append(makeAd(a)));
+      if (!ADS.length) col.hidden = true;
+    }
     loadMore();
     observer.observe(sentinel);
   })
-  .catch(() => {
-    endMsg.textContent = "Could not load stories.";
+  .catch(err => {
+    endMsg.textContent = "Could not load stories. Reason: " + err.message;
     endMsg.hidden = false;
   });
