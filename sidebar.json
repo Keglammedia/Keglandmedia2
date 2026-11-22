@@ -1,0 +1,9 @@
+{
+  "left_title": "About Keglam Media",
+  "left_summary": "Write a short summary of the company here.",
+  "left_contact": "dpwatz@keglammedia.com\n(000) 000-0000",
+  "ads": [
+    { "title": "Your ad here", "text": "Advertise with Keglam Media. Email us for rates.", "image": "", "link": "mailto:dpwatz@keglammedia.com" },
+    { "title": "Second ad", "text": "Text or a picture both work.", "image": "", "link": "" }
+  ]
+}
