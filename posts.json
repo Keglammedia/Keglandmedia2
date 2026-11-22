@@ -1,19 +1,19 @@
 {
   "posts": [
     {
-      "category": "Top Story",
+      "category": "Sports",
       "date": "Nov 21, 2026",
-      "title": "Your first headline goes here",
-      "description": "Write two or three sentences about the story here.",
-      "image": "https://picsum.photos/seed/news1/800/1000",
+      "title": "Phoenix Suns",
+      "description": "Picture of the arena for the Phoenix Suns.",
+      "image": "/images/IMG_5534.jpeg",
       "link": ""
     },
     {
-      "category": "Sports",
+      "category": "Travel",
       "date": "Nov 21, 2026",
-      "title": "A second story",
-      "description": "This text appears right under the picture.",
-      "image": "https://picsum.photos/seed/news2/800/1000",
+      "title": "Sante Fe",
+      "description": "Sante Fe, NM",
+      "image": "/images/IMG_4264.jpeg",
       "link": ""
     }
   ]
