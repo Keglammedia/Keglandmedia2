@@ -3,6 +3,22 @@
     {
       "category": "Sports",
       "date": "November 18, 2026",
+      "title": "Chase Field",
+      "description": "Home of the Arizona Diamondbacks - downtown Phoenix",
+      "image": "/images/IMG_5516.jpeg",
+      "credit": "Keglam Media"
+    },
+    {
+      "category": "Sports",
+      "date": "2026",
+      "title": "Downtown Phoenix, Arizona",
+      "description": "View of downtown",
+      "image": "/images/IMG_5562.jpeg",
+      "credit": "Keglam Media"
+    },
+    {
+      "category": "Sports",
+      "date": "November 18, 2026",
       "title": "Mortgage Match Up Center",
       "description": "Downtown Phoenix, Arizona",
       "image": "/images/IMG_5549.jpeg",
