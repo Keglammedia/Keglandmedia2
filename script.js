@@ -44,12 +44,11 @@ function makeCard(p) {
   const desc = document.createElement("p");
   desc.textContent = p.description || "";
   body.append(h2, desc);
-   if (p.credit) {
+  if (p.credit) {
     const credit = document.createElement("p");
     credit.className = "credit";
     credit.textContent = "Photo credit: " + p.credit;
     body.append(credit);
-  }
   }
 
   card.append(top, img, actions, body);
@@ -75,5 +74,8 @@ fetch("posts.json", { cache: "no-store" })
     POSTS = data.posts || [];
     loadMore();
     observer.observe(sentinel);
+  })
+  .catch(() => {
+    endMsg.textContent = "Could not load stories.";
+    endMsg.hidden = false;
   });
-  
