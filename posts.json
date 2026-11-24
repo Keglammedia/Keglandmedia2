@@ -6,6 +6,7 @@
       "title": "Chase Field",
       "description": "Home of the Arizona Diamondbacks - downtown Phoenix",
       "image": "/images/IMG_5516.jpeg",
+      "more_photos": [],
       "credit": "Keglam Media"
     },
     {
@@ -14,6 +15,20 @@
       "title": "Downtown Phoenix, Arizona",
       "description": "View of downtown",
       "image": "/images/IMG_5562.jpeg",
+      "more_photos": [
+        {
+          "image": "/images/IMG_5552.jpeg"
+        },
+        {
+          "image": "/images/IMG_5560.jpeg"
+        },
+        {
+          "image": "/images/IMG_5552.jpeg"
+        },
+        {
+          "image": "/images/IMG_5552.jpeg"
+        }
+      ],
       "credit": "Keglam Media"
     },
     {
@@ -22,6 +37,7 @@
       "title": "Mortgage Match Up Center",
       "description": "Downtown Phoenix, Arizona",
       "image": "/images/IMG_5549.jpeg",
+      "more_photos": [],
       "credit": "Keglam Media"
     },
     {
@@ -30,6 +46,7 @@
       "title": "Mortgage Match Up Center",
       "description": "Phoenix, Arizona",
       "image": "/images/IMG_5524.jpeg",
+      "more_photos": [],
       "credit": "Keglam Media"
     },
     {
@@ -38,6 +55,7 @@
       "title": "Phoenix Suns",
       "description": "Picture of the arena for the Phoenix Suns.",
       "image": "/images/IMG_5534.jpeg",
+      "more_photos": [],
       "credit": "Keglam Media",
       "link": ""
     }
