@@ -25,13 +25,6 @@ collections:
               - { label: Headline, name: title, widget: string }
               - { label: Caption, name: description, widget: text }
               - { label: Photo, name: image, widget: image }
-              - label: More photos (optional, up to 11 for the sliding row)
-                name: more_photos
-                widget: list
-                max: 11
-                required: false
-                fields:
-                  - { label: Photo, name: image, widget: image }
               - { label: Photo Credit, name: credit, widget: string, required: false }
       - name: sidebars
         label: Sidebars and Ads
