@@ -1,5 +1,6 @@
 const BATCH = 4;
 const AD_EVERY = 2;
+const MAX_PHOTOS = 12;
 let shown = 0;
 let count = 0;
 let adIndex = 0;
@@ -17,16 +18,53 @@ function el(tag, cls, text) {
   return e;
 }
 
+function makeSlider(p) {
+  const extra = (p.more_photos || []).map(m => m.image);
+  const photos = [p.image].concat(extra).filter(Boolean).slice(0, MAX_PHOTOS);
+
+  const wrap = el("div", "pslider");
+  const strip = el("div", "pstrip");
+  photos.forEach(src => {
+    const img = el("img");
+    img.src = src;
+    img.alt = p.title || "";
+    img.loading = "lazy";
+    strip.append(img);
+  });
+  wrap.append(strip);
+
+  if (photos.length > 1) {
+    const prev = el("button", "parrow prev", "\u2190");
+    const next = el("button", "parrow next", "\u2192");
+    prev.type = "button";
+    next.type = "button";
+    prev.setAttribute("aria-label", "Previous photo");
+    next.setAttribute("aria-label", "Next photo");
+    const counter = el("div", "pcount");
+
+    function update() {
+      const w = strip.clientWidth || 1;
+      const i = Math.round(strip.scrollLeft / w);
+      prev.disabled = i <= 0;
+      next.disabled = i >= photos.length - 1;
+      counter.textContent = (i + 1) + " / " + photos.length;
+    }
+
+    prev.addEventListener("click", () => strip.scrollBy({ left: -strip.clientWidth, behavior: "smooth" }));
+    next.addEventListener("click", () => strip.scrollBy({ left: strip.clientWidth, behavior: "smooth" }));
+    strip.addEventListener("scroll", update);
+    window.addEventListener("resize", update);
+    wrap.append(prev, next, counter);
+    update();
+  }
+  return wrap;
+}
+
 function makeCard(p) {
   const card = el("article", "card");
 
   const top = el("div", "card-top");
   top.append(el("span", "cat", p.category || ""), el("span", "date", p.date || ""));
-
-  const img = el("img");
-  img.src = p.image || "";
-  img.alt = p.title || "";
-  img.loading = "lazy";
 
   const actions = el("div", "actions");
   const like = el("button", "like", "\u2661");
@@ -41,7 +79,7 @@ function makeCard(p) {
   body.append(el("h2", "", p.title || ""), el("p", "", p.description || ""));
   if (p.credit) body.append(el("p", "credit", "Photo credit: " + p.credit));
 
-  card.append(top, img, actions, body);
+  card.append(top, makeSlider(p), actions, body);
   return card;
 }
 
