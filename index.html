@@ -4,17 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Keglam Media</title>
+  <meta name="description" content="Stories and photos from Keglam Media.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-      <header class="top">
-    <h1>Keglam Media</h1>
-    <a class="contact" href="mailto:dpwatz@keglammedia.com">dpwatz@keglammedia.com</a>
+  <header class="top">
+    <a class="brand" href="#top">
+      <span class="logo">K</span>
+      <span class="name">Keglam Media<small>News and Photos</small></span>
+    </a>
   </header>
 
-  <main id="feed"></main>
+  <section id="top" class="mast">
+    <p class="eyebrow sq">Fresh from Keglam Media</p>
+    <h1>Latest <span class="hl">stories</span></h1>
+  </section>
+
+  <div class="layout">
+    <aside id="leftBox" class="side left"></aside>
+    <main id="feed"></main>
+    <aside id="adsCol" class="side right"></aside>
+  </div>
   <div id="sentinel"></div>
   <p id="end" hidden>You're all caught up.</p>
+
+  <footer>
+    <p class="brandline">Keglam Media</p>
+    <p>&copy; 2026 Keglam Media. All rights reserved.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
